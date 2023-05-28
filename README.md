@@ -1,4 +1,4 @@
-# Microsserviço com Spring Boot 3.x.x e tecnologias relacionadas
+# Microsserviço com Spring Boot e tecnologias relacionadas
 Este microsserviço foi desenvolvido utilizando uma variedade de tecnologias modernas que visam proporcionar escalabilidade, flexibilidade e facilidade de desenvolvimento. A seguir, estão as principais tecnologias utilizadas neste projeto:
 
 ## Tecnologias Utilizadas
