@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findById(Long id) {
-        log.info("USERL_SERVICE ::: Get request on " + env.getProperty("local.server.port") + " port");
+        log.info("USER_SERVICE ::: Get request on " + env.getProperty("local.server.port") + " port");
         return userRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Object no found"));
     }
 
