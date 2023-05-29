@@ -1,0 +1,57 @@
+version: '3.4'
+
+services:
+  eureka-server:
+    image: 1df9840472ec/eureka-server:1.0.0
+    ports:
+      - "8761:8761"
+    expose:
+      - "8761"
+    networks:
+      - microsservices-system-payroll
+
+
+  api-gateway:
+    image: 1df9840472ec/api-gateway:1.0.0
+    ports:
+      - "8765:8765"
+    expose:
+      - "8765"
+    depends_on:
+      - eureka-server
+    environment:
+      - eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka
+    networks:
+      - microsservices-system-payroll
+
+
+  user-api:
+    image: 1df9840472ec/user-api:1.0.0
+    ports:
+      - "8000:8000"
+    depends_on:
+      - eureka-server
+      - api-gateway
+    environment:
+      - PORT=8001
+      - eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka
+    networks:
+      -  microsservices-system-payroll
+
+  payroll-api:
+    image: 1df9840472ec/payroll-api:1.0.0
+    ports:
+      - "8100:8100"
+    depends_on:
+      - eureka-server
+      - api-gateway
+      - user-api
+    environment:
+      - PORT=8100
+      - eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka
+    networks:
+      - microsservices-system-payroll
+
+networks:
+   microsservices-system-payroll:
+    driver: bridge
