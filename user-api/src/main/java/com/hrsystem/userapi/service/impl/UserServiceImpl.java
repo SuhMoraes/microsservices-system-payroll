@@ -9,13 +9,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
 @RequiredArgsConstructor
 @Service
 @Slf4j
-public class UserServiceImpl implements UserService {
+public abstract class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -31,4 +32,11 @@ public class UserServiceImpl implements UserService {
     public List<User> findAll() {
         return userRepository.findAll();
     }
+
+    @Override
+    public User createUser(@RequestBody String name, String email, String password, double hourlyPrice) {
+        log.info("USER_SERVICE ::: Created User ");
+        return userRepository.createUser(name, email, password, hourlyPrice);
+    }
+
 }
