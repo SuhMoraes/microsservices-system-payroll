@@ -19,7 +19,7 @@ jobs:
         uses: docker/build-push-action@v6.6.1
         with:       
           context: .
-          file: ./Dockerfile
+          file: ./payroll-api/Dockerfile
           push: true
           tags: |
             1df9840472ec/bootcamp-microsservises${{ github.run_number }}
